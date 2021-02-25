@@ -1,0 +1,146 @@
+{% extends 'layout/main.twig' %}
+
+{% block content %}
+
+
+<section id="solutions-header">
+  <div class="contenu">
+    <div class="grid_12">
+      <h2>La solution pour financer votre projet à impact à portée de clic !</h2>
+    </div>
+    <div class="clear"></div>
+  </div>
+</section>
+
+<section id="solutions-filters">
+  <div class="contenu">
+    <div class="grid_12">
+      <div class="top">
+        <button class="mid-button yellow-button" onclick="hideMenu()">Cacher les filtres</button>
+      </div>
+      <div class="select">
+          <select id="niveau" class="niveau" name="niveau" onchange="checkNiveauxBesoins()">
+              <option value="" default hidden>Où en est votre projet ?</option>
+              {% for n in niveaux %}
+                <option value="{{ n.ni_id }}">{{ n.ni_title }}</option>
+              {% endfor %}
+          </select>
+          <select id="besoin" class="besoin" name="besoin" onchange="checkNiveauxBesoins()">
+              <option value="" default hidden>Quel est votre besoin de financement ?</option>
+              {% for b in besoins %}
+                <option value="{{ b.be_id }}">{{ b.be_title }}</option>
+              {% endfor %}
+          </select>
+          <button type="button" class="small-button blue-button">Valider mon choix</button>
+      </div>
+      <div class="all-cards">
+        {% for fiche in allFiches %}
+            <div class="grid_4">
+              <div class="card">
+                <div class="top"><p>{{fiche.so_title}}</p></div>
+                <div class="content">
+
+                    <p class="titre">{{fiche.fich_title}}</p>
+                    <a href="solutions/{{fiche.fich_url}}" target="_blank"><button class="small-button blue-tr">Découvrir</button></a>
+                </div>
+              </div>
+            </div>
+            {% if loop.index is divisibleby(3) and not loop.last %}
+              <div class="clear"></div>
+            {% endif %}
+        {% endfor %}
+        <div class="clear"></div>
+      </div>
+
+      <button class="mid-button blue-button" id="loadMore" onclick="loadMore('.grid_4')">Charger plus de solutions</button>
+      <p class="totop"><a href="#top"><img src="{{config.URL_RESSOURCES}}/img/up.jpg" alt="Haut de page"></a></p>
+
+    </div>
+
+    <div class="clear"></div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block metafoot %}
+
+<script type="text/javascript">
+
+slice('.grid_4');
+
+  function hideMenu(){
+    $('.select').toggle();
+
+    var text = $('.top button').text();
+    $('.top button').text(
+        text == "Montrer les filtres" ? "Cacher les filtres" : "Montrer les filtres");
+  }
+
+  function checkNiveauxBesoins(){
+
+    let html = "";
+    let valSolution = $("#solution").val();
+
+    $('.view-more-button').hide();
+
+    if($("#niveau").val() != "" && $("#besoin").val() != ""){
+
+      $("#solution").prop('disabled', false);
+
+      $.post("{{config.BASE_URL}}/Webservice/getSolutions", JSON.stringify({niveau: $("#niveau").val() , besoin: $("#besoin").val() }), function(data){
+
+        $('#loadMore').hide();
+
+        for(var i = 0; i < data.length; i++){
+
+          html += '<div class="grid_4">';
+          html += '<div class="card">';
+          html += '<div class="top"><p>'+ data[i].so_title + '</p></div>';
+          html += '<div class="content">';
+          html += '';
+          html += '<p class="titre">'+ data[i].fich_title + '</p>';
+          html += '<a href="solutions/'+ data[i].fich_url + '">';
+          html += '<button class="small-button blue-tr">Découvrir</button>';
+          html += '</a>';
+          html += '</div>';
+          html += '</div>';
+          html += '</div>';
+
+          if ( i && (i % 3 === 2)) {
+            html += '<div class="clear"></div>';
+          }
+
+          $('.all-cards').html(html);
+        }
+
+        html += '<div class="clear"></div>';
+        $('.all-cards').html(html);
+        $('.totop').show();
+
+      }, "JSON");
+
+    }
+
+  }
+
+
+  function getFiches(){
+
+    let html = "";
+    let valSolution = $("#solution").val();
+
+    $('.view-more-button').hide();
+
+    if(valSolution != ""){
+
+      $.get("{{config.BASE_URL}}/Webservice/getFichesBySolution/" + valSolution, function(data){
+
+
+
+      }, "JSON");
+    }
+  }
+
+</script>
+{% endblock %}

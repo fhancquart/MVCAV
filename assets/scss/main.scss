@@ -1,0 +1,476 @@
+//HOME
+#home-header{
+  text-align: center;
+  img{
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+  }
+  h1{
+    @include skew;
+    display: block;
+    text-align: left;
+    width: 70%;
+    padding-left: 1em;
+    position: relative;
+    top: -1em;
+  }
+}
+
+#home-carousel{
+  .head{
+    display: block;
+    vertical-align: middle;
+    border-bottom: 2px solid $grey;
+    padding-bottom: .75em;
+    button{
+      float: right;
+      margin-top: .85em;
+    }
+    h2{
+      vertical-align: middle;
+      font-weight: 500;
+    }
+  }
+  .select{
+    @include select-filter;
+    select{
+      margin: 0;
+      width: 27%;
+    }
+  }
+  .carousel{
+    background-color: $yellow;
+    padding: 2em 0 0em 0;
+    .slick-slide {
+      outline: none !important;
+      .card{
+        @include card;
+      }
+    }
+  }
+  .arrow-carousel{
+    position: relative;
+    img{
+      cursor: pointer;
+    }
+    .prev{
+      position: absolute;
+      top: -12.5em;
+      left: -4em;
+    }
+    .next{
+      position: absolute;
+      top: -12.5em;
+      right: -4em;
+    }
+  }
+}
+
+#home-video{
+  margin-top: 15em;
+  margin-bottom: 15em;
+  .grey-bg{
+    position: relative;
+    &:before{
+      position: absolute;
+      content: '';
+      width: 100%;
+      top: -5em;
+      background-color: #eee;
+      @include skew;
+      z-index: -1;
+      height: 140%;
+    }
+    iframe{
+      display: block;
+      margin: auto;
+      text-align: center;
+      max-width: 100%;
+    }
+    .titre{
+      font-size: 1.25em;
+      color: $blue;
+      padding-left: 6.85em;
+      font-weight: 500;
+    }
+  }
+}
+
+#home-blog{
+  padding-top: 5em;
+  margin-bottom: 15em;
+  display: block;
+  .yellow-bg{
+    position: relative;
+    padding-top: 2.5em;
+    &:before{
+      position: absolute;
+      content: '';
+      width: 100%;
+      top: -5em;
+      background-color: $grey;
+      @include skew;
+      z-index: -1;
+      height: 125%;
+    }
+    .article{
+      padding: 0 4em;
+      .titre{
+        font-size: 1.25em;
+        color: $blue;
+        font-weight: 500;
+      }
+      .txt{
+        padding: 0em 1.75em;
+      }
+      button{
+        display: block;
+        margin: auto;
+      }
+    }
+    .condition{
+      padding: 1em 5em;
+      p{
+        font-size: .75em;
+        color: #555;
+      }
+    }
+  }
+}
+
+#home-social{
+  padding-bottom: 10em;
+  padding-top: 4em;
+  .top{
+    padding-bottom: 1.5em;
+    .white-button{
+      border: 1px solid #ddd;
+      float: right;
+    }
+    .first{
+      margin-right: 1em;
+    }
+  }
+  .contenu-social{
+    background-color: $grey;
+    padding: 2em 0;
+    .twitter, .facebook{
+      overflow-y: scroll;
+      height: 30em;
+      width: 80%;
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
+//SOLUTIONS
+#solutions-header{
+  padding-top: 2.5em;
+  h2, p{
+    text-align: center;
+  }
+  h2{
+    margin-bottom: 0;
+  }
+  p{
+    color: $blue;
+    margin-top: 0.5em;
+  }
+}
+#solutions-filters{
+  padding-bottom: 4em;
+  position: relative;
+  .top{
+    padding-top: 6em;
+    padding-bottom: 1.25em;
+    border-bottom: 2px solid $grey;
+    button{
+      float: right;
+      position: relative;
+      top: -3em;
+    }
+  }
+  .select{
+    @include select-filter;
+    select{
+      margin: 0;
+      width: 27%;
+    }
+  }
+  .all-cards{
+    background-color: $yellow;
+    padding: 4em 2em 2em 2em;
+    margin-bottom: 6em;
+    .card{
+      width: 80% !important;
+      padding-bottom: 2em;
+      @include card;
+    }
+  }
+}
+
+//DÉTAILS
+#details-content{
+  padding-bottom: 4em;
+  .top{
+    padding: 4em 0 2.5em 0;
+    .right{
+      img{
+        float: right;
+        width: 12%;
+        cursor: pointer;
+      }
+      img.first{
+        padding: 0 0 0 1em;
+      }
+    }
+  }
+  .content{
+    padding: 2em;
+    border: 25px solid #f5f7fa;
+    .top-content{
+      i, p{
+        display: inline-block;
+        color: $blue;
+      }
+    }
+    .txt-content{
+      a{
+        width: 35%;
+        display: inline-block;
+        background-color: #f5f7fa;
+        text-align: center;
+        padding: 1em 0;
+        margin: 1em auto 0 auto;
+      }
+    }
+    ul{
+      padding: 2em 3em;
+      background-color: #f5f7fa;
+      width: 80%;
+      display: inline-block;
+      &:before{
+        content:attr(aria-label);
+        font-weight:bold;
+        margin-left:-15px;
+      }
+      li{
+          display: list-item;
+          &:before{
+            content: "\25A0";
+            color: $blue;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+          }
+      }
+    }
+  }
+  .sidebar{
+    border: 1px solid #e6e6e6;
+    width: 100%;
+    margin-top: 4em;
+    .top{
+      padding: 1em 2em;
+      background-color: #e6e6e6;
+      button{
+        width: 100%;
+      }
+    }
+    .content-sidebar{
+      padding: 3em 2em 0 2em;
+      .bloc{
+        border: 1px solid #e6e6e6;
+        border-radius: 3px;
+        display: block;
+        margin-bottom: 3em;
+        padding-bottom: 1em;
+        .head{
+        text-align: center;
+        margin: auto;
+        position: relative;
+        top: -.65em;
+        background-color: #fff;
+        width: 85%;
+          i,p{
+            display: inline-block;
+          }
+          i{
+            color: $blue;
+          }
+        }
+        iframe{
+          width: 100%;
+        }
+        p{
+          color: #5c596d;
+        }
+        p, a{
+          margin-top: 0;
+          font-size: .75em;
+          padding: 0 1.5em;
+        }
+        a{
+          i{
+            opacity: .75;
+          }
+        }
+      }
+    }
+  }
+}
+
+//LOGIN
+#login-content{
+  background-color: #ebedf0;
+  padding: 7em 0;
+  .bloc{
+    background-color: #fff;
+    width: 20em;
+    display: block;
+    text-align: center;
+    margin: auto;
+    padding: 1.5em 0;
+    border-radius: 3px;
+    .titre{
+      text-align: center;
+      font-size: 1.5em;
+      color: $blue;
+    }
+    form{
+      input, button{
+        display: block;
+        margin: 1em auto;
+      }
+    }
+  }
+  .error{
+    color: red;
+    text-align: center;
+  }
+}
+
+//ADMINISTRATION
+#administration-content{
+  position: relative;
+  padding: 4em 0;
+  .header{
+    width: 80%;
+    display: block;
+    margin: 0 auto 1.5em auto;
+    h2{
+      text-align: left;
+    }
+    button.yellow-button{
+      position: relative;
+      top: 1em;
+      float: right;
+      margin: 0 1em 0 0;
+    }
+    .no-margin{
+      margin: 0 !important;
+    }
+  }
+  .top{
+    width: 80%;
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin: auto;
+    p{
+      padding-left: 1em;
+      text-align: center;
+    }
+  }
+  .content{
+    width: 80%;
+    display: block;
+    margin: auto;
+    .row{
+      background-color: white;
+      margin: 1.5em 0;
+      padding: 1em;
+      border-radius: 3px;
+      .grid_5{
+        border-right: 1px solid #ddd;
+        p{
+          padding-top: .15em;
+          padding-left: .5em;
+        }
+      }
+      .grid_3{
+        border-right: 1px solid #ddd;
+        a{
+          text-align: center;
+        }
+      }
+      .grid_4{
+        text-align: center;
+      }
+      button{
+        display: inline-block;
+        margin: auto;
+        text-align: center;
+        margin-top: .5em;
+      }
+      form{
+        display: inline-block;
+      }
+    }
+  }
+}
+
+//FICHE
+#fiche-content{
+  padding: 4em 0;
+  .header{
+    width: 88%;
+    display: block;
+    margin: 0 auto 1.5em auto;
+    .titre{
+      text-align: right;
+      float: right;
+      position: relative;
+      font-size: 1em;
+      color: $blue;
+      top: -.25em;
+      display: inline-block;
+      vertical-align: middle;
+      padding-right: .5em;
+    }
+    button{
+      display: inline-block;
+      float: right;
+    }
+    .delete{
+      margin-left: .5em;
+    }
+    a{
+      position: relative;
+      top: .7em;
+    }
+    a.see{
+      top: inherit;
+      button{
+        margin-right: .5em;
+      }
+    }
+  }
+  .content{
+    width: 80%;
+    display: block;
+    margin: auto;
+    background-color: white;
+    padding: 2em;
+    border-radius: 3px;
+  }
+}
+
+//404
+#error-page{
+  padding: 15em 0;
+  text-align: center;
+}

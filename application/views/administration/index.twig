@@ -1,0 +1,86 @@
+{% extends 'layout/main.twig' %}
+
+{% block metahead %}
+<style>
+body{
+	background-color: #f0f0f0;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+  <section id="administration-content">
+  	<div class="contenu">
+			<div class="header">
+	  		<div class="grid_6">
+					<h2>Liste des fiches</h2>
+	  		</div>
+				<div class="grid_6">
+					<a href="{{url('Administration/addFiche')}}"><button class="small-button yellow-button no-margin">Ajouter Fiche</button></a>
+					<a href="{{url('Administration/addSolution')}}"><button class="small-button yellow-button">Ajouter Solution</button></a>
+				</div>
+	  		<div class="clear"></div>
+			</div>
+			<div class="top">
+				<div class="grid_4">
+					<p>Nom</p>
+				</div>
+				<div class="grid_4">
+					<p>Site</p>
+				</div>
+				<div class="grid_4">
+					<p>Lien</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="content">
+				{% for f in fiches %}
+				<div class="row">
+					<div class="grid_5">
+						<p>{{ f.fich_title }}</p>
+					</div>
+					<div class="grid_3">
+						<a href="{{ f.fich_siteI }}" target="_blank"><p>Lien vers le site</p></a>
+					</div>
+					<div class="grid_4">
+						<a target="_blank" href="{{config['BASE_URL']}}/financervotreprojet/administration/fiche/{{ f.fich_id }}"><button class="small-button blue-button"><i class="fa fa-pen" aria-hidden="true"></i> Éditer</button></a>
+						<a href="/financervotreprojet/solutions/{{ f.fich_url }}" target="_blank" class="see"><button class="mid-button blue-button delete" type="button"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+						<button class="small-button grey-button delete" type="button" onclick="deleteFiche('{{ f.fich_id }}');"><i class="fa fa-trash" aria-hidden="true"></i></button>
+						<form action="" method="POST" id="deleteFiche_{{ f.fich_id }}" />
+							<input type="hidden" name="todo" value="delete" />
+							<input type="hidden" name="idfiche" value="{{ f.fich_id }}" />
+						</form>
+					</div>
+					<div class="clear"></div>
+				</div>
+				{% endfor %}
+				<button class="mid-button blue-button" id="loadMore" onclick="loadMore('.row')">Charger plus de fiches</button>
+	      <p class="totop"><a href="#top"><img src="{{config.URL_RESSOURCES}}/img/up.jpg" alt="Haut de page"></a></p>
+			</div>
+  	</div>
+  </section>
+
+
+{% endblock %}
+
+
+{% block metafoot %}
+
+<script>
+
+slice('.row');
+
+function deleteFiche(id){
+
+	if(confirm("Confirmer la suppression de la fiche {{ fiche.fich_title }}")){
+		$("#deleteFiche_"+id).submit();
+	}
+
+}
+
+</script>
+
+
+{% endblock %}

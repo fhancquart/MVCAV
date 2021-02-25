@@ -1,0 +1,121 @@
+{% extends 'layout/main.twig' %}
+
+{% block metahead %}
+<style>
+body{
+	background-color: #f0f0f0;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section id="fiche-content">
+	<form action="" method="POST" id="deleteFiche">
+		<input type="hidden" name="todo" value="delete" />
+		<input type="hidden" name="idfiche" value="{{ fiche.fich_id }}" />
+	</form>
+  <div class="contenu">
+  	<form action="" method="POST">
+  			<input type="hidden" name="todo" value="update" />
+			<div class="header">
+				<div class="grid_3">
+					<a href="{{url('Administration/index')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Revenir à la liste</a>
+				</div>
+		    <div class="grid_9">
+					<button class="mid-button grey-button delete" type="button" onclick="deleteFiche()"><i class="fa fa-trash" aria-hidden="true"></i></button>
+					<button class="mid-button blue-button"><i class="fa fa-check" aria-hidden="true"></i> Mettre à jour</button>
+					<a href="/financervotreprojet/solutions/{{ fiche.fich_url }}" target="_blank" class="see"><button class="mid-button blue-button delete" type="button"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+					<p class="titre">Édition : <b>{{ fiche.fich_title }}</b></p>
+		    </div>
+		    <div class="clear"></div>
+		  </div>
+	    <div class="clear"></div>
+	    <div class="content">
+	    	<input type="hidden" name="fich_id" value="{{ fiche.fich_id }}" />
+				<div class="grid_3">
+					<p>Priorité d'affichage</p>
+				</div>
+				<div class="grid_9">
+					<select name="fich_prio">
+						<option value="1" {% if fiche.fich_prio == 1 %}selected{% endif %}>Prio</option>
+						<option value="2" {% if fiche.fich_prio == 2 %}selected{% endif %}>Par défaut</option>
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Titre</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="fich_title" value="{{ fiche.fich_title }}">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>URL</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="fich_url" value="{{ fiche.fich_url }}">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Logo</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="fich_logo" value="{{ fiche.fich_logo }}">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Site Internet</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="fich_siteI" value="{{ fiche.fich_siteI }}">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Activé</p>
+				</div>
+				<div class="grid_9">
+					<select name="fich_active">
+						<option value="1" {% if fiche.fich_active == 1 %}selected{% endif %}>Oui</option>
+						<option value="0" {% if fiche.fich_active == 0 %}selected{% endif %}>Non</option>
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Solution</p>
+				</div>
+				<div class="grid_9">
+					<select name="fich_idsolu">
+						{% for solu in solutions %}
+							<option value="{{solu.so_id}}" {% if fiche.fich_idsolu == solu.so_id %}selected{% endif %} >{{ solu.so_title }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Description</p>
+				</div>
+				<div class="grid_9">
+					<textarea id="drive-demo" name="fich_desc"><p>{{fiche.fich_desc}}</p></textarea>
+				</div>
+				<div class="clear"></div>
+	    </div>
+	</form>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block metafoot %}
+
+<script src="{{config.URL_RESSOURCES}}/js/lib/ckeditor.js"></script>
+
+<script>
+
+CKEDITOR.replace( 'drive-demo', {
+  filebrowserUploadUrl: "{{config.BASE_URL}}/Webservice/uploadImage/"
+});
+
+</script>
+
+{% endblock %}

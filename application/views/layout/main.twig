@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+  <title>{{page.title}}</title>
+  <meta name="description" content="{{page.description}}" />
+  <link rel="stylesheet" href="{{config.URL_RESSOURCES}}/css/style.min.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{config.URL_RESSOURCES}}/css/responsive.min.css" type="text/css">
+  <link rel="icon" type="image/ico" href="{{config.URL_RESSOURCES}}/img/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/normalize.css" type="text/css">
+
+  {% block metahead %}{% endblock %}
+
+</head>
+
+<body>
+
+  <header>
+    <div class="contenu">
+      <div class="grid_7">
+        <a class="logo" href="{{url('Main/index')}}"><img src="{{config.URL_RESSOURCES}}/img/logo.png" alt="Logo Aviva"></a>
+        <ul class="liens">
+          <li><a target="_blank" href="https://www.lafabriqueaviva.fr/fr/">La fabrique Aviva</a></li>
+          <li><a target="_blank" href="https://lafabriqueaviva.fr/fr/the-guide/">A propos</a></li>
+          <li><a target="_blank" href="https://lafabriqueaviva.fr/fr/project/discover/v2/grands-gagnants?wallets=3&state=finishSuccess&sortBy=random">Ils ont gagné</a></li>
+          <li><a target="_blank" href="https://lafabriqueaviva.fr/fr/news/">Actualités</a></li>
+        </ul>
+      </div>
+      <div class="grid_5">
+        <ul class="liens">
+          {% if config.logged == true %}
+            <li><a href="{{url('Administration/index')}}">Administration</a></li>
+            <li class="deconnexion tooltip" title="Déconnexion"><a onclick="removeCookie('userlog')"> <span class="tooltiptext">Déconnexion</span><i class="fa fa-power-off" aria-hidden="true"></i></a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <ul class="liens">
+      <li><a target="_blank" href="https://lafabriqueaviva.fr/fr/project/discover/v2/grands-gagnants?wallets=3&state=finishSuccess&sortBy=random">Ils ont gagné !</a></li>
+      <li><a target="_blank" href="https://lafabriqueaviva.fr/fr/faq/">Foire aux questions</a></li>
+      <li><a href="mailto:la_fabrique@aviva.com">Contactez-nous</a></li>
+      <li><a target="_blank" href="https://lafabriqueaviva.fr/fr/legal-notice/">Mentions légales</a></li>
+      <li><a target="_blank" href="https://storage.googleapis.com/mcc-aviva/cms/reglement-aviva-v1.pdf">Règlement</a></li>
+    </ul>
+    <span class="powered">Powered by <a target="_blank" href="https://fr.lita.co/">lita.co</a> et <a target="_blank" href="https://www.aviva.fr/">Aviva</a></span>
+  </footer>
+
+</body>
+
+<script type="text/javascript" src="{{config.URL_RESSOURCES}}/js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="{{config.URL_RESSOURCES}}/js/lib/slick.min.js"></script>
+<script type="text/javascript" src="{{config.URL_RESSOURCES}}/js/script.js"></script>
+
+<script>
+  function removeCookie(name){
+    document.cookie = "userlog=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    window.location.replace('/');
+  }
+</script>
+
+{% block metafoot %}{% endblock %}
+
+</html>

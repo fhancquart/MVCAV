@@ -1,0 +1,248 @@
+{% extends 'layout/main.twig' %}
+
+{% block content %}
+
+    <section id="home-header">
+      <div class="contenu">
+        <img src="{{config.URL_RESSOURCES}}/img/header-home.png" alt="header aviva">
+        <h1>A la recherche d’un financement pour votre projet à impact ?</h1>
+      </div>
+    </section>
+
+    <section id="home-carousel">
+      <div class="contenu">
+        <div class="head">
+          <div class="grid_7">
+            <h2>Trouvez votre solution de financement</h2>
+          </div>
+          <div class="grid_5">
+            <a href="{{url('Main/solutions')}}"><button class="mid-button yellow-button">Voir toutes les solutions</button></a>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="select">
+            <select id="niveau" class="niveau" name="niveau" onchange="checkNiveauxBesoins()">
+                <option value="" default hidden>Où en est votre projet ?</option>
+                {% for n in niveaux %}
+                  <option value="{{ n.ni_id }}">{{ n.ni_title }}</option>
+                {% endfor %}
+            </select>
+            <select id="besoin" class="besoin" name="besoin" onchange="checkNiveauxBesoins()">
+                <option value="" default hidden>Quel est votre besoin de financement ?</option>
+                {% for b in besoins %}
+                  <option value="{{ b.be_id }}">{{ b.be_title }}</option>
+                {% endfor %}
+            </select>
+            <button type="button" class="small-button blue-button">Valider mon choix</button>
+        </div>
+        <div class="carousel multiple-items">
+            {% for fiche in allFiches %}
+              <div class="item">
+                <div class="card">
+                  <div class="top"><p>{{fiche.so_title}}</p></div>
+                  <div class="content">
+
+                      <p class="titre">{{fiche.fich_title}}</p>
+                      <a href="solutions/{{fiche.fich_url}}" target="_blank"><button class="small-button blue-tr">Découvrir</button></a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+        <div class="arrow-carousel">
+            <ul>
+                <li class="prev"><img src="{{config.URL_RESSOURCES}}/img/arrow-slider-left.png" alt="Défilement gauche"></li>
+                <li class="next"><img src="{{config.URL_RESSOURCES}}/img/arrow-slider-right.png" alt="Défilement droite"></li>
+            </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="home-video">
+      <div class="contenu">
+        <div class="video grey-bg">
+          <p class="titre">Aviva, un assureur responsable</p>
+          <iframe width="700" height="394" src="https://www.youtube.com/embed/bJE3EB-jsIU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="home-blog">
+      <div class="contenu">
+        <div class="yellow-bg">
+          <div class="grid_6">
+            <div class="article">
+              <p class="titre">Créateurs d’entreprise, créez et assurez votre avenir professionnel !</p>
+              <img src="{{config.URL_RESSOURCES}}/img/img-blog1.jpg" alt="header aviva">
+              <p class="txt">Avec notre offre Aviva Créateurs d’entreprise, profitez d'avantages en tant que nouvel entrepreneur. Bénéficiez de solutions d’assurance professionnelle adaptées à votre activité et d’un accompagnement pour vous faciliter vos démarches juridiques...</p>
+              <p class="txt"><b>Faites des économies(1) sur vos assurances professionnelles essentielles pendant 3 ans !</b></p>
+              <a href="https://www.aviva.fr/assurance-professionnelle/secteur-d-activite/assurance-creation-entreprise/" target="_blank"><button class="small-button blue-button">Découvrir l’offre</button></a>
+            </div>
+          </div>
+          <div class="grid_6">
+            <div class="article">
+              <p class="titre">Professionnels, votre engagement RSE récompensé !</p>
+              <img src="{{config.URL_RESSOURCES}}/img/img-blog2.jpg" alt="header aviva">
+              <p class="txt"><b>Votre entreprise est engagée dans une démarche de développement durable ?</b></p>
+              <p class="txt">Si votre entreprise s’est vu décerner un label RSE (Responsabilité Sociétale des Entreprises) reconnu par Aviva, vous pouvez bénéficier d’une réduction de 10% à vie* sur la plupart de vos cotisations d’assurance professionnelle !</p>
+              <a href="https://www.aviva.fr/conseils-en-assurance/mon-activite-professionnelle/reduction-entreprises-developpement-durable.html" target="_blank"><button class="small-button blue-button">Découvrir l’offre</button></a>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="condition">
+            <p>(1) Offre réservée aux entreprises jusqu’à 3 ans d’activité et applicable pour toute nouvelle souscription, sous réserve d’acceptation du risque, d’un des contrats d’assurance suivants : Responsabilité Civile Professionnelle Aviva (prestataires de services, entreprises industrielles et commerciales), Aviva Multirisque Professionnelle, Aviva Solution Santé Pro et Protection Juridique Passeport Pro Aviva. Offres non cumulables avec d’autres offres promotionnelles. Voir modalités détaillées en agence Aviva.</p>
+            <p>(2) Réduction tarifaire de 10% : offre non cumulable avec d’autres offres promotionnelles, applicable pendant toute la durée de détention du label « RSE » et pendant toute la durée de vie du contrat, sous réserve du paiement intégral des cotisations, pour toute nouvelle souscription ou avenant réalisés sur l’un des contrats d’assurance Aviva suivants : Aviva Multirisque Professionnelle, Responsabilité Civile (Prestataires de services, Entreprises industrielles et commerciales), Responsabilité du Dirigeant, Aviva Solution Santé Pro, Sur-complémentaire Aviva Solution Santé + Pro et Assurance Protection Juridique Professionnelle (Passeport Pro Aviva). Liste des labels « RSE » éligibles disponible sur le site aviva.fr ou en agences Aviva.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="home-social">
+      <div class="contenu">
+          <div class="top">
+            <div class="grid_6">
+              <p class="titre">Ne ratez rien de notre actualité</p>
+            </div>
+            <div class="grid_6">
+              <button class="small-button white-button">Suivez-nous sur Twitter</button>
+              <button class="small-button white-button first">Suivez-nous sur Facebook</button>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div class="contenu-social">
+            <div class="grid_6">
+                <div class="twitter">
+                  <a class="twitter-timeline" data-tweet-limit=3 data-height="300" href="https://twitter.com/lafabriqueaviva?ref_src=twsrc%5Etfw">Tweets by AvivaFrance</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="facebook">
+                  <div class="fb-page" data-tabs="timeline" data-href="https://www.facebook.com/lafabriqueaviva" data-width="380" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
+
+{% block metafoot %}
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v5.0"></script>
+<script type="text/javascript">
+function checkNiveauxBesoins(){
+
+  if($("#niveau").val() != "" && $("#besoin").val() != ""){
+
+    $("#solution").prop('disabled', false);
+
+    $.post("{{config.BASE_URL}}/Webservice/getSolutions", JSON.stringify({niveau: $("#niveau").val() , besoin: $("#besoin").val() }), function(data){
+
+      let html = "";
+
+      $('.multiple-items').slick('unslick');
+
+      $('#loadMore').hide();
+      $('.carousel').css('padding', '2em 0');
+
+      for(var i = 0; i < data.length; i++){
+
+        html += '<div class="item">';
+        html += '<div class="card">';
+        html += '<div class="top"><p>'+ data[i].so_title + '</p></div>';
+        html += '<div class="content">';
+        html += '';
+        html += '<p class="titre">'+ data[i].fich_title + '</p>';
+        html += '<a href="solutions/'+ data[i].fich_url + '">';
+        html += '<button class="small-button blue-tr">Découvrir</button>';
+        html += '</a>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+        $('.multiple-items').html(html);
+      }
+
+      $('.multiple-items').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        prevArrow: $('.prev'),
+        nextArrow: $('.next'),
+        responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+      });
+
+    }, "JSON");
+
+  }
+
+}
+
+$( document ).ready(function() {
+
+  $('.multiple-items').slick({
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    prevArrow: $('.prev'),
+    nextArrow: $('.next'),
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+  });
+
+});
+</script>
+
+{% endblock %}

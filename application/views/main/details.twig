@@ -1,0 +1,60 @@
+{% extends 'layout/main.twig' %}
+
+{% block content %}
+
+<section id="details-content">
+  <div class="contenu">
+    <div class="grid_8">
+        <div class="top">
+          <div class="grid_6">
+            <img class="logo" src="{{fiche.fich_logo}}" alt="">
+          </div>
+          <div class="grid_6 right">
+            <a target="_blank" href="{{fiche.fich_siteI}}"><img class="first" src="{{config.URL_RESSOURCES}}/img/btn-web.png" alt=""></a>
+            <img class="print" src="{{config.URL_RESSOURCES}}/img/btn-print.png" alt="" onclick="window.print();return false;">
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="content">
+          <div class="top-content">
+            <h2>{{fiche.fich_title}}</h2>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <p>Description</p>
+          </div>
+          <div class="txt-content">
+            <p>
+              {{fiche.fich_desc|raw}}
+            </p>
+          </div>
+        </div>
+    </div>
+    <div class="grid_3 offset_1">
+      <div class="sidebar">
+        <div class="top">
+          <a href="mailto:la_fabrique@aviva.com"><button class="mid-button yellow-button">Nous contacter</button></a>
+        </div>
+        <div class="content-sidebar">
+          <div class="bloc">
+            <div class="head">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+              <p>En savoir plus</p>
+            </div>
+            <p>Barème des frais de gestion et recouvrement amiable</p>
+            <p>Contrats de financement Mai 2018</p>
+            <a class="pdf-link" href=""><i class="fa fa-download" aria-hidden="true"></i> Télécharger PDF</a>
+          </div>
+          <div class="bloc">
+            <div class="head">
+              <i class="fa fa-play-circle" aria-hidden="true"></i>
+              <p>En vidéo</p>
+            </div>
+            <iframe width="181" height="105" src="https://www.youtube.com/embed/bJE3EB-jsIU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'layout/main.twig' %}
+
+{% block metahead %}
+<style>
+body{
+	background-color: #f0f0f0;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section id="fiche-content">
+  <div class="contenu">
+  	<form action="" method="POST">
+			<div class="header">
+				<div class="grid_3">
+					<a href="{{url('Administration/index')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Revenir à la liste</a>
+				</div>
+		    <div class="grid_9">
+						<button class="mid-button blue-button"><i class="fa fa-check" aria-hidden="true"></i> Ajouter</button>
+						<p class="titre">Ajouter une fiche</b></p>
+		    </div>
+		    <div class="clear"></div>
+		  </div>
+	    <div class="content">
+	    		<input type="hidden" name="todo" value="add" />
+	    		{% if error == "NOK" %}
+	    		<div class="grid_12">
+					<p style="color: red;">ERREUR: Cette URL existe déjà.</p>
+				</div>
+	    		{% endif %}
+				<div class="grid_3">
+					<p>Priorité d'affichage</p>
+				</div>
+				<div class="grid_9">
+					<select name="fich_prio">
+						<option value="" default disabled>-- En tête de liste ou non --</option>
+						<option value="1">Prio</option>
+						<option value="2">Par défaut</option>
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Titre</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="fich_title" value="">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>URL</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="fich_url" value="">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Logo</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="fich_logo" value="">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Site Internet</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="fich_siteI" value="">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Activé</p>
+				</div>
+				<div class="grid_9">
+					<select name="fich_active">
+						<option value="1">Oui</option>
+						<option value="0">Non</option>
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Solution</p>
+				</div>
+				<div class="grid_9">
+					<select name="fich_idsolu">
+						{% for solu in solutions %}
+							<option value="{{solu.so_id}}">{{ solu.so_title }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Description</p>
+				</div>
+				<div class="grid_9">
+					<textarea id="drive-demo" name="fich_desc"><p>{{fiche.fich_desc}}</p></textarea>
+				</div>
+				<div class="clear"></div>
+	    </div>
+	</form>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block metafoot %}
+
+<script src="{{config.URL_RESSOURCES}}/js/lib/ckeditor.js"></script>
+
+<script>
+
+CKEDITOR.replace( 'drive-demo', {
+  filebrowserUploadUrl: "{{config.BASE_URL}}/Webservice/uploadImage/"
+});
+
+</script>
+
+{% endblock %}

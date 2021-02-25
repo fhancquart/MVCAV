@@ -1,0 +1,66 @@
+{% extends 'layout/main.twig' %}
+
+{% block metahead %}
+<style>
+body{
+	background-color: #f0f0f0;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section id="fiche-content">
+  <div class="contenu">
+  	<form action="" method="POST">
+			<div class="header">
+				<div class="grid_3">
+					<a href="{{url('Administration/index')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Revenir à la liste</a>
+				</div>
+		    <div class="grid_9">
+						<button class="mid-button blue-button"><i class="fa fa-check" aria-hidden="true"></i> Ajouter</button>
+						<p class="titre">Ajouter une solution</b></p>
+		    </div>
+		    <div class="clear"></div>
+		  </div>
+	    <div class="content">
+	    		<input type="hidden" name="todo" value="add" />
+				<div class="grid_3">
+					<p>Titre</p>
+				</div>
+				<div class="grid_9">
+					<input class="title" type="text" name="so_title" value="">
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Niveau</p>
+				</div>
+				<div class="grid_9">
+					<select name="nbs_niveauID">
+						{% for niv in niveaux %}
+							<option value="{{niv.ni_id}}">{{ niv.ni_title }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_3">
+					<p>Besoin</p>
+				</div>
+				<div class="grid_9">
+					<select name="nbs_besoinID">
+						{% for bes in besoins %}
+							<option value="{{bes.be_id}}">{{ bes.be_title }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="clear"></div>
+	    </div>
+	</form>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block metafoot %}
+
+{% endblock %}

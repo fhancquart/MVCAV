@@ -1,0 +1,15 @@
+@media screen and (min-width: 1280px) {
+    @import 'responsive/1200';
+}
+
+@media screen and (min-width: 961px) and (max-width: 1279px) {
+    @import 'responsive/800';
+}
+
+@media screen and (min-width: 602px) and (max-width: 960px) {
+    @import 'responsive/600';
+}
+
+@media screen and (max-width: 601px) {
+    @import 'responsive/480';
+}

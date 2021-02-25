@@ -1,0 +1,12 @@
+application/cache/*
+assets/.sass-cache/
+assets/sass-generator\.bat
+
+assets/scss/config\.rb
+
+desktop\.ini
+
+.idea
+.idea/*
+
+application/config/urls\.php
